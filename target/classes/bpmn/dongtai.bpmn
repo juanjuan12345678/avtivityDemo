@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/test" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test" id="m1530864813370" name="">
+  <process id="duoshili98" name="duoshili98" isExecutable="true" isClosed="false" processType="None">
+    <startEvent id="srat" name="StartEvent"></startEvent>
+    <userTask id="xiaozhang" name="总经理">
+      <extensionElements>
+        <activiti:formProperty id="sex" name="性别" type="enmu" required="true">
+          <activiti:value id="F" name="男"></activiti:value>
+          <activiti:value id="M" name="女"></activiti:value>
+        </activiti:formProperty>
+        <activiti:taskListener event="create" class="TaskListenerImpl"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <userTask id="jingliHQ" name="经理会签" activiti:assignee="${per}">
+      <multiInstanceLoopCharacteristics isSequential="true" activiti:collection="#{pers}" activiti:elementVariable="per"></multiInstanceLoopCharacteristics>
+    </userTask>
+    <sequenceFlow id="_5" sourceRef="srat" targetRef="jingliHQ"></sequenceFlow>
+    <sequenceFlow id="_6" sourceRef="jingliHQ" targetRef="xiaozhang"></sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow1" sourceRef="xiaozhang" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_duoshili98">
+    <bpmndi:BPMNPlane bpmnElement="duoshili98" id="BPMNPlane_duoshili98">
+      <bpmndi:BPMNShape bpmnElement="srat" id="BPMNShape_srat">
+        <omgdc:Bounds height="35.0" width="35.0" x="150.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="xiaozhang" id="BPMNShape_xiaozhang">
+        <omgdc:Bounds height="55.0" width="85.0" x="370.0" y="130.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="jingliHQ" id="BPMNShape_jingliHQ">
+        <omgdc:Bounds height="55.0" width="85.0" x="251.0" y="130.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="520.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_5" id="BPMNEdge__5">
+        <omgdi:waypoint x="185.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="251.0" y="157.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6" id="BPMNEdge__6">
+        <omgdi:waypoint x="336.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="370.0" y="157.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="455.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="520.0" y="157.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
